@@ -1,6 +1,7 @@
 const baseURL = "http://localhost:3000"
 const logInURL = `${baseURL}/log-in`
 const validateURL = `${baseURL}/validate`
+const createUserURL = `${baseURL}/users`
 
 // Make a post request to a given URL with a given data object as the body and return the Promise
 const post = (url, data) => {
@@ -31,6 +32,10 @@ const LogIn = data => {
   
 }
 
+const SignUp = data => {
+    return post(createUserURL, data).then(response => response.json())
+}
 
 
-export default { LogIn, validate }
+
+export default { LogIn, validate, SignUp }
