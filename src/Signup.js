@@ -18,8 +18,15 @@ export default class Signup extends React.Component {
 	};
 	handleSubmit = (e) => {
 		e.preventDefault();
-		API.SignUp(this.state).then((json) => console.log(json));
-	};
+        API.signUp(this.state).then(
+        API.logIn(this.state))
+		.then((json) => this.props.logIn(json.username, json.token));
+        
+        
+     };   
+     
+     
+       
 
 	render() {
 		return (

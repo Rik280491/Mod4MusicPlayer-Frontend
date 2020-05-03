@@ -24,12 +24,12 @@ class App extends React.Component {
   checkToken = () => {
     if (localStorage.token) {
       API.validate(localStorage.token).then((json) =>
-        this.LogIn(json.username, json.token)
+        this.logIn(json.username, json.token)
       );
     }
   };
 
-  LogIn = (username, token) => {
+  logIn = (username, token) => {
     this.setState({
       username,
     });
@@ -37,6 +37,13 @@ class App extends React.Component {
     localStorage.token = token;
   };
 
+  logOut = () => {
+    this.setState({
+      username: null
+    })
+    localStorage.removeItem("token")
+  }
+  
   render() {
 
     const {username} = this.state
@@ -45,14 +52,14 @@ class App extends React.Component {
         {
         username 
         ? 
-        <HomePage/> 
+        <HomePage logOut={this.logOut} /> 
         : 
         <Router>
-        <Route exact path="/sign-up" component={() => <Signup />} />
+        <Route exact path="/sign-up" component={() => <Signup logIn={this.logIn} username={this.state.username} />} />
         <Route
           exact
           path="/log-in"
-          component={() => <Login LogIn={this.LogIn} />}
+          component={() => <Login logIn={this.logIn} />}
         /> 
        </Router>
         }

@@ -15,7 +15,7 @@ import styles from './StyleComponent/HeaderStyle'
 
 
 function Header(props) {
-  const { classes, onDrawerToggle } = props;
+  const { classes, onDrawerToggle, logOut } = props;
 
   return (
     <React.Fragment>
@@ -36,7 +36,7 @@ function Header(props) {
             </Hidden>
             <Grid item xs />
             <Grid item>
-              <Link className={classes.link} href="#" variant="body2">
+              <Link onClick={logOut} className={classes.link} href="#" variant="body2">
                Log Out
               </Link>
             </Grid>

@@ -19,9 +19,8 @@ export default class Login extends React.Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 	
-		API.LogIn(this.state)
-			
-			.then((json) => this.props.LogIn(json.username, json.token));
+		API.logIn(this.state)
+		.then((json) => this.props.logIn(json.username, json.token));
 		// .then(json => console.log(json))
 	};
 
