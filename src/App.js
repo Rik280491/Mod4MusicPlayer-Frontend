@@ -52,7 +52,9 @@ class App extends React.Component {
         {
         username 
         ? 
-        <HomePage logOut={this.logOut} /> 
+        <Router>
+        <Route exact path="/home" component={() => <HomePage logOut={this.logOut}/>} /> 
+        </Router>
         : 
         <Router>
         <Route exact path="/sign-up" component={() => <Signup logIn={this.logIn} username={this.state.username} />} />

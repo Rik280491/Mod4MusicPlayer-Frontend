@@ -4,13 +4,14 @@ import AppBar from '@material-ui/core/AppBar';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Tabs from '@material-ui/core/Tabs';
 import Toolbar from '@material-ui/core/Toolbar';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './StyleComponent/HeaderStyle'
-
+// import Login from '../src/Login'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 
@@ -36,13 +37,14 @@ function Header(props) {
             </Hidden>
             <Grid item xs />
             <Grid item>
-              <Link onClick={logOut} className={classes.link} href="#" variant="body2">
+              <Link to="/log-in" onClick={logOut} className={classes.link} variant="body2">
                Log Out
               </Link>
+              
             </Grid>
             <Grid item>
          < ExitToAppIcon />
-            </Grid>
+            </Grid> 
           </Grid>
         </Toolbar>
       </AppBar>
