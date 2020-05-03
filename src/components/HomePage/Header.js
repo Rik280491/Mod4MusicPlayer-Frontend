@@ -10,7 +10,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Toolbar from '@material-ui/core/Toolbar';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './StyleComponent/HeaderStyle'
-// import Login from '../src/Login'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
