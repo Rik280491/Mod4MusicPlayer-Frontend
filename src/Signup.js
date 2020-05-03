@@ -30,3 +30,4 @@ export default class Signup extends React.Component {
 		);
 	}
 }
+
