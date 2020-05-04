@@ -58,7 +58,7 @@ class App extends React.Component {
         ? 
 
         
-          <Route path="/"  render={props => <HomePage {...props }  logOut={this.logOut}   /> }  />
+          <Route path="/"  render={props => <HomePage {...props }  logOut={this.logOut}  username={this.state.username} /> }  />
        
 
         : 

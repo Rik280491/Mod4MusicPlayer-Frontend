@@ -2,6 +2,7 @@ const baseURL = "http://localhost:3001"
 const logInURL = `${baseURL}/log-in`
 const validateURL = `${baseURL}/validate`
 const createUserURL = `${baseURL}/users`
+const createPlaylistURL = `${baseURL}/playlists`
 
 
 const post = (url, data) => {
@@ -15,6 +16,7 @@ const post = (url, data) => {
   }
   return fetch(url, configObject)
 }
+
 
 
 const get = (url, token) => {
@@ -36,6 +38,16 @@ const signUp = data => {
     return post(createUserURL, data).then(response => response.json())
 }
 
+const createPlaylist = (data) => {
+  return post(createPlaylistURL, data).then(response => response.json())
+}
 
 
-export default { logIn, validate, signUp }
+const findUser = (userName) => {
+  return fetch(createUserURL).then(response => response.json()).then(users => users.filter(user => user.username === userName))
+  
+}
+
+
+
+export default { logIn, validate, signUp, createPlaylist, findUser }
