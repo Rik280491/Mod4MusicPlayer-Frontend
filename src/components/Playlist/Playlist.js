@@ -7,17 +7,18 @@ export default class Playlist extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-            playlist: "",
-            playlistData: []
+			playlist: "",
+			playlistData: [],
 		};
 	}
 
-    componentDidMount(){
-        API.getPlaylists(localStorage.token).then(json => 
-            // playlistData: json
-            console.log(json)
-        )
-    }
+	componentDidMount() {
+		API.getPlaylists(localStorage.token).then((json) =>
+			this.setState({
+				playlistData: json,
+			})
+		);
+	}
 	handleChange = (e) => {
 		this.setState({
 			[e.target.name]: e.target.value,
@@ -26,19 +27,19 @@ export default class Playlist extends React.Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		API.createPlaylist({
+		API.createPlaylist(
+			{
 				playlist: { name: this.state.playlist },
-            }, localStorage.token).then(json => console.log(json))
-            // add playlist to playlistdata. spread 
-           
-        }
-        
-	
-
-	
+			},
+			localStorage.token
+		).then((playlist) =>
+			this.setState({
+				playlistData: [...this.state.playlistData, playlist]
+			})
+		);
+	};
 
 	render() {
-
 		return (
 			<div>
 				<CreatePlaylist

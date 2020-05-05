@@ -96,7 +96,7 @@ console.log(playlistData)
 									/>
 									<CardContent className={classes.cardContent}>
 										<Typography gutterBottom variant="h5" component="h2">
-											Playlist Title
+											{card.name}
 										</Typography>
 										<Typography>
 											{/* This is a media card. You can use this section to describe the content. */}
