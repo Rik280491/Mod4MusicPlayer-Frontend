@@ -5,12 +5,13 @@ const createUserURL = `${baseURL}/users`
 const createPlaylistURL = `${baseURL}/playlists`
 
 
-const post = (url, data) => {
+const post = (url, data, token) => {
   const configObject = {
     method: "POST",
     headers: {
       "Accept": "application/json",
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      AUTHORIZATION: token
     },
     body: JSON.stringify(data)
   }
@@ -38,16 +39,19 @@ const signUp = data => {
     return post(createUserURL, data).then(response => response.json())
 }
 
-const createPlaylist = (data) => {
-  return post(createPlaylistURL, data).then(response => response.json())
+const createPlaylist = (data,token) => {
+  return post(createPlaylistURL, data, token).then(response => response.json())
 }
 
+const getPlaylists = (token) => {
+  return get(createPlaylistURL, token).then(response => response.json())
+}
 
-const findUser = (userName) => {
-  return fetch(createUserURL).then(response => response.json()).then(users => users.filter(user => user.username === userName))
+// const findUser = (userName) => {
+//   return fetch(createUserURL).then(response => response.json()).then(users => users.filter(user => user.username === userName))
   
-}
+// }
 
 
 
-export default { logIn, validate, signUp, createPlaylist, findUser }
+export default { logIn, validate, signUp, createPlaylist, getPlaylists }

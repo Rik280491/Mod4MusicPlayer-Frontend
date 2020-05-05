@@ -1,42 +1,53 @@
-import React from 'react'
-import CreatePlaylist from './StyleComponent/CreatePlaylist'
-import PlaylistsStyle from './StyleComponent/PlaylistsStyle'
-import API from '../../../src/API';
-
+import React from "react";
+import CreatePlaylist from "./StyleComponent/CreatePlaylist";
+import PlaylistsStyle from "./StyleComponent/PlaylistsStyle";
+import API from "../../../src/API";
 
 export default class Playlist extends React.Component {
-    constructor(){
-        super()
-        this.state = {
-            playlist: ""
-        }
-    }
+	constructor() {
+		super();
+		this.state = {
+            playlist: "",
+            playlistData: []
+		};
+	}
 
-    handleChange = (e) => {
+    componentDidMount(){
+        API.getPlaylists(localStorage.token).then(json => 
+            // playlistData: json
+            console.log(json)
+        )
+    }
+	handleChange = (e) => {
 		this.setState({
 			[e.target.name]: e.target.value,
 		});
-    };
-    
-    handleSubmit = (e) => {
-        e.preventDefault();
-    API.findUser(this.props.username).then(json => {
-        const userID = json[0].id
-        console.log(json)
-    API.createPlaylist({playlist :{name: this.state.playlist, user_id: userID}} )
-    })
-  
-    }
+	};
 
-render(){
-    return (
-        <div>
-        <CreatePlaylist handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
-        <PlaylistsStyle/>
-    </div>
-   
-   
-    )
-}
+	handleSubmit = (e) => {
+		e.preventDefault();
+		API.createPlaylist({
+				playlist: { name: this.state.playlist },
+            }, localStorage.token).then(json => console.log(json))
+            // add playlist to playlistdata. spread 
+           
+        }
+        
+	
 
+	
+
+	render() {
+
+		return (
+			<div>
+				<CreatePlaylist
+					handleChange={this.handleChange}
+					handleSubmit={this.handleSubmit}
+				/>
+
+				<PlaylistsStyle playlistData={this.state.playlistData} />
+			</div>
+		);
+	}
 }
