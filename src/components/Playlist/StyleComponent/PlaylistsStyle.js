@@ -12,7 +12,12 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Link from "@material-ui/core/Link";
+// import Link from "@material-ui/core/Link";
+import PlaylistShow from "../PlaylistShow";
+import { BrowserRouter as Router, Route, Link} from "react-router-dom";
+import { withRouter } from 'react-router-dom';
+
+
 
 function Copyright() {
 	return (
@@ -59,11 +64,11 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function PlaylistsStyle(props) {
-	const { playlistData, removePlaylist } = props;
+function PlaylistsStyle(props) {
+	const { playlistData, removePlaylist, renderShowPage } = props;
 	const classes = useStyles();
 
-	const cards = playlistData
+	const cards = playlistData;
 
 	return (
 		<React.Fragment>
@@ -97,10 +102,19 @@ export default function PlaylistsStyle(props) {
 										</Typography>
 									</CardContent>
 									<CardActions>
+										<nav>
+									<Link to="playlist-show">
 										<Button size="small" color="primary">
 											View
 										</Button>
-										<Button onClick={() => removePlaylist(card.id)} size="small" color="primary">
+									</Link>
+									</nav>
+									<Route exact path="/playlist-show" component={() => <PlaylistShow/>} />
+										<Button
+											onClick={() => removePlaylist(card.id)}
+											size="small"
+											color="primary"
+										>
 											Delete
 										</Button>
 									</CardActions>
@@ -129,3 +143,5 @@ export default function PlaylistsStyle(props) {
 		</React.Fragment>
 	);
 }
+
+export default withRouter(PlaylistsStyle);

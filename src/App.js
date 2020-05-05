@@ -37,7 +37,7 @@ class App extends React.Component {
     });
 
     localStorage.token = token;
-    this.props.history.push('/home')
+    this.props.history.push('/songs')
 
   };
 

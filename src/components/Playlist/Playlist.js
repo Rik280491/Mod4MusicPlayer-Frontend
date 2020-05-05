@@ -2,6 +2,9 @@ import React from "react";
 import CreatePlaylist from "./StyleComponent/CreatePlaylist";
 import PlaylistsStyle from "./StyleComponent/PlaylistsStyle";
 import API from "../../../src/API";
+import PlaylistShow from './PlaylistShow'
+import { BrowserRouter as Router, Route, Link} from "react-router-dom";
+
 
 export default class Playlist extends React.Component {
 	constructor() {
@@ -46,7 +49,7 @@ export default class Playlist extends React.Component {
 		})
 	}
 
-
+	
 	render() {
 		return (
 			<div>
@@ -54,9 +57,11 @@ export default class Playlist extends React.Component {
 					handleChange={this.handleChange}
 					handleSubmit={this.handleSubmit}
 				/>
-
-				<PlaylistsStyle playlistData={this.state.playlistData} removePlaylist={this.removePlaylist} />
+				
+				<PlaylistsStyle playlistData={this.state.playlistData} removePlaylist={this.removePlaylist}  />
 			</div>
+		
+		
 		);
 	}
 }
