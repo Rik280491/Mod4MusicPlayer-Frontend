@@ -60,15 +60,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PlaylistsStyle(props) {
-	const { playlistData } = props;
+	const { playlistData, removePlaylist } = props;
 	const classes = useStyles();
 
-	
-
-	
-
-	// console.log(new Array(getUserPlaylists().then(playlists => playlists.length)))
-console.log(playlistData)
 	const cards = playlistData
 
 	return (
@@ -91,7 +85,7 @@ console.log(playlistData)
 								<Card className={classes.card}>
 									<CardMedia
 										className={classes.cardMedia}
-										image="https://source.unsplash.com/random"
+										image="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
 										title="Image title"
 									/>
 									<CardContent className={classes.cardContent}>
@@ -106,8 +100,8 @@ console.log(playlistData)
 										<Button size="small" color="primary">
 											View
 										</Button>
-										<Button size="small" color="primary">
-											Edit
+										<Button onClick={() => removePlaylist(card.id)} size="small" color="primary">
+											Delete
 										</Button>
 									</CardActions>
 								</Card>

@@ -39,6 +39,14 @@ export default class Playlist extends React.Component {
 		);
 	};
 
+	removePlaylist = (id) => {
+		API.deletePlaylist(id)
+		this.setState({
+			playlistData: this.state.playlistData.filter(playlist => playlist.id !== id)
+		})
+	}
+
+
 	render() {
 		return (
 			<div>
@@ -47,7 +55,7 @@ export default class Playlist extends React.Component {
 					handleSubmit={this.handleSubmit}
 				/>
 
-				<PlaylistsStyle playlistData={this.state.playlistData} />
+				<PlaylistsStyle playlistData={this.state.playlistData} removePlaylist={this.removePlaylist} />
 			</div>
 		);
 	}
