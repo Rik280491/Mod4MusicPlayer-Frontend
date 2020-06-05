@@ -50,7 +50,6 @@ function PlaylistCard(props) {
   const classes = useStyles();
 
   const cards = playlistData;
-
   return (
     <React.Fragment>
       
@@ -58,7 +57,7 @@ function PlaylistCard(props) {
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {cards.map((card) => (
+            {cards && cards.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <CardMedia

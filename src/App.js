@@ -24,14 +24,23 @@ class App extends React.Component {
   }
 
   getUserPlaylist = () => {
-    API.getPlaylists(localStorage.token).then( (obj) => this.props.getPlaylist(obj));
+    if(localStorage.token){
+    API.getPlaylists(localStorage.token).then( (obj) => {
+
+      this.props.getPlaylist(obj)});}
   }
 
   checkToken = () => {
     if (localStorage.token) {
-      API.validate(localStorage.token).then((json) =>
-        this.logIn(json.username, json.token)
-      );
+      API.validate(localStorage.token).then((json) => {
+        this.setState({
+          username: json.username
+        });
+    
+        localStorage.token = json.token;
+      
+      
+      });
     }
   };
 
@@ -41,6 +50,7 @@ class App extends React.Component {
     });
 
     localStorage.token = token;
+    this.props.history.push("/songs")
   };
 
   logOut = () => {
@@ -77,7 +87,7 @@ class App extends React.Component {
             />
             <Route
               exact
-              path="/log-in"
+              path="/"
               component={() => <Login logIn={this.logIn} />}
             />
           </>
