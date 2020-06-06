@@ -10,11 +10,11 @@ Built by my partner and I as a project during our bootcamp. It is a demonstratio
 
 **Features**
 
-A Voice Search
-Redux state management
-React Hooks
-Parsing data from an external API, in this case music. New to working with media.
-Authentication using BCrypt and JSON Web Tokens (JWT) 
+* A Voice Search
+* Redux state management
+* React Hooks
+* Parsing data from an external API, in this case music. New to working with media.
+* Authentication using BCrypt and JSON Web Tokens (JWT) 
 
 
 
